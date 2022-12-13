@@ -5,6 +5,7 @@ import com.example.springboot_webservice.domain.post.PostsRepository;
 import com.example.springboot_webservice.web.dto.PostsListResponseDto;
 import com.example.springboot_webservice.web.dto.PostsResponseDto;
 import com.example.springboot_webservice.web.dto.PostsSaveRequestDto;
+import com.example.springboot_webservice.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +25,7 @@ public class PostsService {
     }
 
     @Transactional
-    public Long update(Long id, PostsSaveRequestDto requestDto) {
+    public Long update(Long id, PostsUpdateRequestDto requestDto) {
         Posts posts = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id="
         + id));
         posts.update(requestDto.getTitle(), requestDto.getContent());
@@ -44,5 +45,12 @@ public class PostsService {
         return postsRepository.findAllDesc().stream()
                 .map(PostsListResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        Posts posts = postsRepository.findById(id).orElseThrow(()->new IllegalArgumentException("해당 게시글이 없습니다. id = "
+        + id));
+        postsRepository.delete(posts);
     }
 }
