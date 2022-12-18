@@ -32,6 +32,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-mustache'
+    implementation('or')
 
     //testImplementation 'org.springframework.security:spring-security-test'
 }
