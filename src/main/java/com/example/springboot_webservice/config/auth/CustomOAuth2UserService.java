@@ -1,5 +1,7 @@
 package com.example.springboot_webservice.config.auth;
 
+import com.example.springboot_webservice.config.auth.dto.OAuthAttributes;
+import com.example.springboot_webservice.config.auth.dto.SessionUser;
 import com.example.springboot_webservice.domain.user.User;
 import com.example.springboot_webservice.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +31,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
-        String userNameAttributeName = userRequet.getClientRegistration().getProviderDetails()
+        String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                 .getUserInfoEndpoint().getUserNameAttributeName();
 
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
