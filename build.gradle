@@ -36,7 +36,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation 'org.springframework.session:spring-session-jdbc'
 
-    //testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
